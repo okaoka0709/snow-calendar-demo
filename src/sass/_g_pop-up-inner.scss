@@ -1,0 +1,14 @@
+.g.pop-up-inner {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    background-color: $white;
+    z-index: 1;
+    border-radius: $border-radius;
+    box-shadow: 0 0 $interval-xxl $gray;
+
+    @include media('mobile') {
+        width: calc(100% - 20px);
+        max-height: calc(100% - 20px);
+    }
+}

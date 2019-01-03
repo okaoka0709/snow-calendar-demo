@@ -1,0 +1,60 @@
+.md.notification {
+    position: relative;
+    @extend %card;
+    padding: 15px;
+    transform: $transition;
+    font-size: $font-size-s;
+
+    @each $key, $map in $colors {
+        $bg: map-get($map, 'background');
+        $bd: map-get($map, 'border');
+        $tx: map-get($map, 'text');
+
+        &.is-#{$key} {
+            background-color: $bg;
+            background-color: rgba($bg, $opacity-vh);
+            border-color: $bd;
+            color: $tx;
+
+            &:hover {
+                background-color: $bg;
+            }
+        }
+    }
+
+    + .md.notification {
+        margin-top: $interval-s;
+    }
+
+    .toggle {
+        $size: 16px;
+
+        a {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: $size;
+            height: $size;
+            line-height: $size;
+            text-align: center;
+            opacity: $opacity-l;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:after {
+                @extend %font-pseudo;
+                margin-right: 0;
+                content: '\e5cd';
+                font-size: $font-size-l;
+                transition: $transition;
+                line-height: 1;
+            }
+        }
+    }
+
+    .content {
+
+    }
+}

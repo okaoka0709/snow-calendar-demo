@@ -1,0 +1,53 @@
+.g.tool-tip {
+    $w: 6px;
+
+    position: absolute;
+    z-index: 99;
+    padding-top: $w * 2;
+
+    &.top {
+        margin-top: 2px;
+
+        &:before {
+            top: 0;
+            border-bottom-color: $white;
+            border-left-color: $white;
+        }
+    }
+
+    &.bottom {
+        margin-top: -2px;
+        padding-top: 0;
+        padding-bottom: $w * 2;
+
+        &:before {
+            bottom: 0;
+            border-top-color: $white;
+            border-left-color: $white;
+        }
+    }
+
+    &.left {
+
+        &:before {
+            left: $interval-s;
+        }
+    }
+
+    &.right {
+
+        &:before {
+            right: $interval-s;
+        }
+    }
+
+    &:before {
+        content: $content;
+        position: absolute;
+        height: 0;
+        width: 0;
+        border-width: $w;
+        border-style: solid;
+        border-color: transparent;
+    }
+}

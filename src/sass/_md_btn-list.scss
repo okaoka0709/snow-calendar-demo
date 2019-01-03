@@ -1,0 +1,64 @@
+.md.btn-list {
+
+    .lo.extend & { //popup
+        flex-shrink: 0;
+        padding: $interval-m;
+
+        ul {
+            text-align: right;
+        }
+    }
+
+    .lo.footer & { //tooltip
+
+        ul {
+            text-align: right;
+        }
+
+        .btn {
+            font-size: $font-size-s;
+            padding: $interval-xs $interval-s;
+            line-height: inherit;
+            height: auto;
+        }
+    }
+
+    .lo.login & {
+
+        ul {
+            text-align: center;
+        }
+    }
+
+    &.is-center {
+
+        ul {
+            text-align: center;
+        }
+    }
+
+    &.is-right {
+
+        ul {
+            text-align: right;
+        }
+    }
+
+    ul {
+        @extend %reset;
+        text-align: left;
+    }
+
+    li {
+        display: inline-block;
+        vertical-align: middle;
+
+        + li {
+            margin-left: $interval-xs;
+        }
+    }
+
+    a {
+
+    }
+}

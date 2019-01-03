@@ -1,0 +1,50 @@
+.md.form-table {
+
+    > table {
+        max-width: 100%;
+
+        @include media('mobile') {
+            display: block;
+        }
+
+        > tbody {
+
+            @include media('mobile') {
+                display: block;
+            }
+        }
+
+        > tbody > tr, > tr {
+
+            @include media('mobile') {
+                display: block;
+                padding: $interval-s 0;
+            }
+
+            > th, > td {
+                padding: $interval-s;
+
+                @include media('mobile') {
+                    display: block;
+                }
+            }
+
+            > th {
+                text-align: right;
+                padding-left: $interval-m;
+                white-space: nowrap;
+
+                @include media('mobile') {
+                    text-align: left;
+                }
+            }
+
+            > td {
+
+                a {
+                    @extend %a;
+                }
+            }
+        }
+    }
+}

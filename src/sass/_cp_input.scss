@@ -1,0 +1,429 @@
+%BoxRadius {
+    background-color: $light;
+    border-radius: $border-radius;
+    border: $border;
+
+    label {
+        padding-left: $interval-m;
+        border-radius: $border-radius;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+        + * {
+            flex: 1;
+        }
+    }
+
+    input, select {
+        border-radius: $border-radius;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+%LabelRadius {
+    line-height: $btnInput_lh + $btnInput_pd * 2 - $border-width * 2;
+    height: $btnInput_lh + $btnInput_pd * 2 - $border-width * 2;
+    border: 0;
+    border-right: $border;
+    border-radius: $border-radius 0 0 $border-radius;
+    padding-left: $interval-m;
+    padding-right: $interval-m;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+%InputRadius {
+    line-height: $btnInput_lh - $border-width * 2;
+    height: $btnInput_lh + $btnInput_pd * 2 - $border-width * 2;
+    border: 0;
+    border-radius: 0 $border-radius $border-radius 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+%DotBox {
+    flex-wrap: wrap;
+
+    &.is-error {
+
+        label {
+            background-color: transparent;
+        }
+
+        &:before {
+            content: attr(data-error);
+            display: inline-flex;
+            position: static;
+            padding: 0 $interval-m;
+            vertical-align: middle;
+            align-items: center;
+            order: 1;
+        }
+    }
+
+    &[disabled] {
+
+        label {
+            background-color: transparent;
+            color: $gray;
+        }
+    }
+}
+
+%Dot {
+    display: none;
+
+    &[disabled] {
+
+        + label {
+            cursor: not-allowed;
+
+            &:before {
+                color: $gray !important;
+            }
+        }
+    }
+
+    &:checked {
+
+        + label {
+
+            &:before {
+                color: inherit;
+            }
+        }
+    }
+}
+
+%DotLabel {
+    position: relative;
+    margin-right: $interval-m;
+    white-space: nowrap;
+
+    &:before {
+        @extend %font-pseudo;
+        font-size: $font-size-l;
+        margin-right: 2px;
+    }
+
+    img {
+        vertical-align: text-bottom;
+    }
+}
+
+.cp.input {
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+
+    &[disabled] {
+
+        > label, > a, > span, > input, >select {
+            background-color: $light-gray;
+            pointer-events: none;
+        }
+    }
+
+    &.is-error {
+        $type: map-get($colors, 'danger');
+        $background: map-get($type, 'background');
+        $border: map-get($type, 'border');
+        $text: map-get($type, 'text');
+
+        border-color: $border;
+
+        > label {
+            color: $text;
+            background-color: $background;
+        }
+
+        &:hover {
+
+            &:before {
+                display: none;
+            }
+        }
+
+        &:before {
+            content: attr(data-error);
+            position: absolute;
+            top: $interval-xs;
+            right: $interval-xs;
+            bottom: $interval-xs;
+            padding: $interval-xs $interval-s;
+            font-size: $font-size-xs;
+            color: $text;
+            background-color: $background;
+            border: $border;
+            border-color: $border;
+            border-radius: $interval-xs;
+        }
+    }
+
+    &:after {
+        @extend %clear;
+    }
+
+    &.text {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.password {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.date {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.month {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.datetime-local {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.email {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.number {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.search {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.select {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        select {
+            @extend %InputRadius;
+        }
+    }
+
+    &.file {
+        @extend %BoxRadius;
+
+        &.is-square {
+
+            a {
+                border-radius: $border-radius;
+                padding-right: $interval-m;
+            }
+        }
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            display: none;
+
+            &[disabled] {
+
+                + span {
+                    background-color: $light-gray;
+                }
+            }
+        }
+
+        span {
+            @extend %input;
+            @extend %InputRadius;
+            @extend %ellipsis;
+            width: 173px;
+            border-radius: 0 $border-radius $border-radius 0;
+        }
+
+        a {
+            @extend %LabelRadius;
+            border-right: 0;
+            border-radius: 0 $border-radius $border-radius 0;
+            border-left: $border;
+            transition: $transition;
+            padding-left: $interval-m;
+            padding-right: $interval-m;
+            color: $black;
+
+            &:before {
+                @extend %font-pseudo;
+                content: '\e2c3';
+                font-size: $font-size-xl;
+                vertical-align: sub;
+                margin-right: 6px;
+            }
+
+            &:hover {
+                background-color: $light-gray;
+            }
+        }
+    }
+
+    &.radio {
+        @extend %DotBox;
+
+        input[type="radio"] {
+            @extend %Dot;
+
+            &:checked {
+
+                + label {
+
+                    &:before {
+                        content: '\e837';
+                    }
+                }
+            }
+        }
+
+        label {
+            @extend %DotLabel;
+
+            &:before {
+                content: '\e836';
+            }
+        }
+    }
+
+    &.checkbox {
+        @extend %DotBox;
+
+        input[type="checkbox"] {
+            @extend %Dot;
+
+            &:checked {
+
+                + label {
+
+                    &:before {
+                        content: '\e834';
+                    }
+                }
+            }
+        }
+
+        label {
+            @extend %DotLabel;
+
+            &:before {
+                content: '\e835';
+            }
+        }
+    }
+
+    &.date {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+            border-radius: 0;
+        }
+    }
+
+    &.labelText {
+        @extend %BoxRadius;
+
+        label {
+            @extend %LabelRadius;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+
+    &.selectText {
+        @extend %BoxRadius;
+
+        select {
+            @extend %LabelRadius;
+            padding-right: 20px;
+            border-top: 0;
+            border-left: 0;
+            border-bottom: 0;
+            line-height: normal;
+            height: $btnInput_lh + $btnInput_pd * 2 - $border-width * 2;
+            width: auto;
+        }
+
+        input {
+            @extend %InputRadius;
+        }
+    }
+}

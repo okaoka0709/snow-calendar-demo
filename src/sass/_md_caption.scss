@@ -1,0 +1,96 @@
+.md.caption {
+
+    .lo.extend & { //popup
+        $size: 56px;
+
+        flex-shrink: 0;
+        padding: $interval-m;
+        padding-right: $size !important;
+        color: $major-color;
+        font-size: $font-size-l;
+
+        @include media('mobile') {
+            padding: $interval-m;
+            font-size: $font-size-l;
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+
+    .lo.footer & { //tooltip
+        color: $major-color;
+
+        a {
+            color: inherit;
+        }
+    }
+
+    .lo.heading & {
+        flex: 1;
+
+        a {
+            display: block;
+            font-size: $font-size-xl;
+            color: $black;
+        }
+    }
+
+    .lo.article & {
+        position: relative;
+        padding-left: 10px;
+        font-size: $font-size-l;
+
+        &:before {
+            content: $content;
+            position: absolute;
+            top: 6px;
+            bottom: 6px;
+            left: 0;
+            width: 4px;
+            border-radius: 100px;
+            background-color: $black;
+        }
+
+        a {
+            color: $black !important;
+        }
+
+        + .md, + .g {
+            margin-top: $interval-s;
+        }
+    }
+
+    .lo.aside & {
+
+        &.is-active {
+
+            a {
+
+                &:before {
+
+                    @include media('mobile') {
+                        content: '\e313';
+                    }
+                }
+            }
+        }
+
+        a {
+            display: block;
+            padding: $interval-s $interval-m;
+            font-size: $font-size-l;
+
+            &:before {
+                @extend %font-pseudo;
+                margin-right: $interval-m;
+                font-size: $font-size-l;
+
+                @include media('mobile') {
+                    content: '\e315';
+                }
+            }
+        }
+    }
+}

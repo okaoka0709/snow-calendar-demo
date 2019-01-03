@@ -1,0 +1,39 @@
+.g.pop-up-content-inner {
+
+    > div {
+        min-width: 200px;
+        max-width: 100%;
+        min-height: 70px;
+        max-height: calc(100vh - 140px);
+
+        @include media('mobile') {
+            width: auto !important;
+        }
+
+        img {
+
+            @include media('mobile') {
+                height: auto !important;
+                width: auto !important;
+            }
+        }
+    }
+
+    // .iframe {
+    //     padding: 0;
+    //     display: block;
+    //     height: 300px;
+    //     overflow: auto;
+    //     -webkit-overflow-scrolling: touch;
+
+    //     @include media('mobile') {
+    //         padding: 0;
+    //     }
+    // }
+
+    // iframe {
+    //     width: 100% !important;
+    //     height: calc(100% - 10px) !important;
+    //     min-height: 0 !important;
+    // }
+}

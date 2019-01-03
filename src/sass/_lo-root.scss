@@ -1,0 +1,131 @@
+.lo.root {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background-color: $light;
+	font-size: 15px;
+	font-family: $base-font-style;
+    color: $deep;
+    line-height: 1.7;
+
+    .btn {
+        @extend %btn;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        font-family: $base-font-style;
+
+        &[type="submit"],
+        &[type="reset"],
+        &[type="button"] {
+            @extend %btn;
+        }
+
+        &[type="text"],
+        &[type="password"],
+        &[type="date"],
+        &[type="month"],
+        &[type="datetime-local"],
+        &[type="time"],
+        &[type="email"],
+        &[type="number"],
+        &[type="search"],
+        &[type="file"] {
+            @extend %input;
+            width: $input_w;
+            max-width: 100%;
+
+            @include media('pad') {
+                width: $input_w - $interval-xl;
+            }
+
+            @include media('phone') {
+                width: $input_w - $interval-xl * 2;
+            }
+        }
+
+        &[type="date"] {
+
+        }
+
+        &[type="file"] {
+            height: auto;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            cursor: pointer;
+            width: $btnInput_lh;
+            height: $btnInput_lh;
+            vertical-align: middle;
+        }
+    }
+
+    select {
+        @extend %input;
+        width: $input_w;
+        max-width: 100%;
+
+        @include media('pad') {
+            width: $input_w - $interval-xl;
+        }
+
+        @include media('phone') {
+            width: $input_w - $interval-xl * 2;
+        }
+
+        option {
+
+        }
+    }
+
+    button {
+        @extend %btn;
+    }
+
+    textarea {
+        @extend %input;
+        width: $input_w;
+    }
+
+    label[for], a[href] {
+        cursor: pointer;
+    }
+
+    label[for="#"], a[href="#"] {
+    	cursor: default;
+    }
+
+    img { //消除叉燒包
+        position: relative;
+        max-width: 100%;
+        height: auto !important;
+
+        &:after {
+            content: $content;
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    [href] {
+        cursor: pointer;
+    }
+
+    [disabled] {
+        cursor: not-allowed;
+    }
+}

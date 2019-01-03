@@ -1,0 +1,109 @@
+//按鈕樣式
+
+%btn { //按鈕組件
+    $default: 'normal'; //預設的顏色組
+
+    $color: map-get($colors, $default);
+    $bg: map-get($color, 'background');
+    $bd: map-get($color, 'border');
+    $tx: map-get($color, 'text');
+
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: $transition;
+    border: $border;
+    border-color: $bd;
+    background-color: $bg;
+    border-radius: $border-radius;
+    color: $tx !important;
+    vertical-align: middle;
+    padding: $btnInput_pd $interval-m;
+    line-height: $btnInput_lh;
+    height: $btnInput_lh + $btnInput_pd * 2;
+    font-size: .9em;
+    white-space: nowrap;
+
+    @include media('mobile') {
+        padding: $btnInput_pd $interval-xs;
+        border-radius: $border-radius;
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    &:hover {
+        background-color: deeper($bg);
+        border-color: deeper($bg);
+
+        @include media('mobile') {
+            border-color: transparent;
+            background-color: transparent;
+        }
+    }
+
+    &.is-block {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    &.icon-font {
+
+        &:before {
+            vertical-align: bottom;
+        }
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: .1rem;
+        }
+
+        &.icon-font-only {
+            padding-left: $interval-m;
+            padding-right: $interval-m;
+
+            &:before {
+                margin-right: 0;
+                font-size: $font-size-l;
+            }
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    @each $key, $map in $colors {
+        $bg: map-get($map, 'background');
+        $bd: map-get($map, 'border');
+        $tx: map-get($map, 'text');
+
+        &.is-#{$key} {
+            background-color: $bg;
+            border-color: $bd;
+            color: $tx !important;
+
+            @include media('mobile') {
+                border-color: transparent;
+                background-color: transparent;
+
+                @if( $tx == #ffffff ) {
+                    color: $bg !important;
+                }
+            }
+
+            &:hover {
+                background-color: deeper($bg);
+                border-color: deeper($bg);
+
+                @include media('mobile') {
+                    border-color: transparent;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.g.pop-up {
+    @extend %mask;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    z-index: 1001;
+
+    $add: '';
+
+    @for $i from 1 through 10 { //目前允許 popup 疊 10 層
+        $add: ' #{$add} + .g.pop-up ';
+
+        &#{$add} {
+            z-index: 1001 + $i;
+        }
+    }
+}

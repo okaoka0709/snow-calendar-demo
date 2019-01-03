@@ -1,0 +1,117 @@
+.md.minor-table {
+
+    > table {
+        width: 100%;
+        border-collapse: collapse;
+
+        @include media('mobile') {
+            display: block;
+        }
+
+        > tbody {
+
+            @include media('mobile') {
+                display: block;
+                width: 100%;
+            }
+
+            > tr {
+
+                @include media('mobile') {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    padding: 0 $interval-l;
+                    box-sizing: border-box;
+                }
+
+                &[style="display: table-row;"] {
+
+                    @include media('mobile') {
+                        display: flex !important;
+                    }
+                }
+
+                + tr {
+
+                    @include media('mobile') {
+                        margin-top: $interval-l;
+                    }
+                }
+
+                &:nth-child(odd) {
+                    background-color: $light;
+
+                    @include media('mobile') {
+                        background-color: transparent;
+                    }
+                }
+
+                &:nth-child(even) {
+                    background-color: $white;
+
+                    @include media('mobile') {
+                        background-color: transparent;
+                    }
+                }
+
+                > th, > td {
+                    padding: $interval-s $interval-l;
+                    vertical-align: top;
+                    min-height: 46px;
+
+                    @include media('mobile') {
+                        padding: 0;
+                        min-height: 0;
+                    }
+                }
+
+                > th {
+                    color: $minor-color;
+                    text-align: left;
+
+                    label {
+                        display: inline-block;
+                        position: relative;
+
+                        &.is-require {
+
+                            &:before {
+                                content: '*';
+                                position: absolute;
+                                top: 0;
+                                left: -8px;
+                                color: red;
+                            }
+                        }
+                    }
+
+                    @include media('mobile') {
+                        display: block;
+                    }
+                }
+
+                > td {
+
+                    a {
+                        @extend %a;
+                    }
+
+                    @include media('mobile') {
+                        display: block;
+                        width: 100%;
+                    }
+                }
+
+                > * + * {
+                    border-left: 1px solid $light-gray;
+
+                    @include media('mobile') {
+                        border-left: 0;
+                        margin-top: $interval-s;
+                    }
+                }
+            }
+        }
+    }
+}
