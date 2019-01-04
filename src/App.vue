@@ -238,7 +238,6 @@
                         desc: ''
                     }
 
-                this.sources.push($set);
                 this.clickSource($set);
             },
             importSource: function(){
@@ -376,9 +375,11 @@
                 //console.log('更新行事曆', source);
 
                 const $source = this.sources;
-                let _sn = source.sn;
 
-                if( _sn ){ //如果有 sn 代表是修改
+                let _sn = source.sn,
+                    $originalSource = $source.find(item => { return item.sn === _sn });
+
+                if( $originalSource ){ //如果有重複的 sn 代表是修改
                     let $originalSource = $source.find(item => { return item.sn === _sn });
                     this.$okaTool.extend({
                         target: $originalSource,
@@ -387,7 +388,6 @@
                         hard: true
                     });
                 }else {
-                    source.sn = this.$okaTool.getUUID();
                     $source.push(source);
                 }
 
