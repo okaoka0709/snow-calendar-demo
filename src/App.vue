@@ -380,7 +380,6 @@
                     $originalSource = $source.find(item => { return item.sn === _sn });
 
                 if( $originalSource ){ //如果有重複的 sn 代表是修改
-                    let $originalSource = $source.find(item => { return item.sn === _sn });
                     this.$okaTool.extend({
                         target: $originalSource,
                         ref: source,
