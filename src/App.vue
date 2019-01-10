@@ -2,7 +2,7 @@
     <div class="lo root">
         <loExtend></loExtend>
         <div class="lo main">
-            <gCalendar
+            <snowCalendar
                 :events="events"
                 :sources="sources"
                 :defaultMainCal="mainCal"
@@ -27,22 +27,20 @@
                 @importSource="importSource"
                 @clickSource="clickSource"
                 @hoverSource="hoverSource"
-            ></gCalendar>
+            ></snowCalendar>
         </div>
     </div>
 </template>
 
 <script>
     import loExtend from '@/components/loExtend'
-    import gCalendar from '@/components/gCalendar'
 
     import VueCookie from 'vue-cookie'
     import { mapMutations } from 'vuex'
 
     export default {
         components: {
-            loExtend,
-            gCalendar
+            loExtend
         },
         data: function(){
             return {

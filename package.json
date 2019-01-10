@@ -1,5 +1,5 @@
 {
-  "name": "snow-calendar",
+  "name": "snow-calendar-demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "register-service-worker": "^1.5.2",
+    "snow-calendar": "^0.1.2",
     "vee-validate": "^2.1.5",
     "vue": "^2.5.21",
     "vue-axios": "^2.1.4",
