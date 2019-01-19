@@ -16,6 +16,7 @@
                 @errorMsg="errorMsg"
 
                 @moveResizeEvent="moveResizeEvent"
+                @clickTime="clickTime"
                 @addEvent="addEvent"
                 @clickEvent="clickEvent"
                 @hoverEvent="hoverEvent"
@@ -87,23 +88,21 @@
 
                 let $event = this.$okaTool.copy(event);
 
-                $event.finally = isFinally;
-
-                if( mode === 'date' && type === 'move' ){
+                if( mode === 'date' && type === 'head' ){
                     let _difference = this.differenceTime(time, $event.startTime, mode);
 
                     $event.startTime = this.computedTime($event.startTime, _difference);
                     $event.endTime = this.computedTime($event.endTime, _difference);
-                }else if( mode === 'date' && type === 'resize' ){
+                }else if( mode === 'date' && type === 'foot' ){
                     $event.endTime.year = time.year;
                     $event.endTime.month = time.month;
                     $event.endTime.date = time.date;
-                }else if( mode === 'time' && type === 'move' ){
+                }else if( mode === 'time' && type === 'head' ){
                     let _difference = this.differenceTime(time, $event.startTime, mode);
 
                     $event.startTime = this.computedTime($event.startTime, _difference);
                     $event.endTime = this.computedTime($event.endTime, _difference);
-                }else if( mode === 'time' && type === 'resize' ){
+                }else if( mode === 'time' && type === 'foot' ){
                     $event.endTime.year = time.year;
                     $event.endTime.month = time.month;
                     $event.endTime.date = time.date;
@@ -118,6 +117,11 @@
                 }
 
                 this.updateEvent($event, isFinally);
+            },
+            clickTime: function(time, mode){
+                // console.log('點選時間', time, mode);
+
+                this.addEvent(time, mode);
             },
             addEvent: function(time, mode){
                 // console.log('新增事件', time, mode);
@@ -152,7 +156,7 @@
                     $event.endTime = this.computedTime($event.startTime, {
                         date: 1
                     });
-                }else if( mode === 'hour' ){
+                }else if( mode === 'time' ){
                     $event.startTime = this.roundTime(time);
                     $event.endTime = this.computedTime($event.startTime, {
                         hour: 1
