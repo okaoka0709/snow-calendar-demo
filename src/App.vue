@@ -5,9 +5,9 @@
             <snowCalendar
                 :events="events"
                 :sources="sources"
-                :defaultMainCal="mainCal"
-                :defaultRefCal="refCal"
-                :defaultMode="mode"
+                :mainCal="mainCal"
+                :refCal="refCal"
+                :mode="mode"
 
                 @updateCal="updateCal"
                 @updateMode="updateMode"
@@ -48,8 +48,16 @@
             return {
                 events: [],
                 sources: [],
-                mainCal: {},
-                refCal: {},
+                mainCal: {
+                    year: 2019,
+                    month: 1,
+                    date: 1
+                },
+                refCal: {
+                    year: 2019,
+                    month: 1,
+                    date: 1
+                },
                 mode: 'month'
             }
         },
