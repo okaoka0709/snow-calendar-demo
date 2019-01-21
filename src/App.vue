@@ -15,8 +15,9 @@
                 @initMonth="initMonth"
                 @errorMsg="errorMsg"
 
-                @moveResizeEvent="moveResizeEvent"
                 @clickTime="clickTime"
+
+                @dropEvent="dropEvent"
                 @addEvent="addEvent"
                 @clickEvent="clickEvent"
                 @hoverEvent="hoverEvent"
@@ -58,22 +59,22 @@
                 'pushToolTip',
                 'pushNotification'
             ]),
-            updateCal: function(opt){ //切換月曆(ref or main)
-                // console.log('切換行事曆', opt.cal, '切換時間', opt.date);
+            updateCal: function(cal, date){ //切換月曆(ref or main)
+                console.log('切換日曆', cal, '切換時間', date);
 
-                VueCookie.set('cal-'+ opt.cal +'Cal', JSON.stringify(opt.data), 1);
+                VueCookie.set('cal-'+ cal +'Cal', JSON.stringify(date), 1);
             },
             updateMode: function(opt){ //改變模式
-                // console.log('切換模式', opt);
+                console.log('切換模式', opt);
 
                 VueCookie.set('cal-mode', opt, 1);
             },
             initMonth: function(opt){ //第一次造訪該月
-                // console.log('第一次取得該月', opt);
+                console.log('第一次檢視該月', opt);
                 // this.getEvent(opt);
             },
             errorMsg: function(msg){ //推送錯誤訊息
-                // console.log('推送錯誤訊息', msg);
+                console.log('顯示錯誤的訊息', msg);
 
                 this.pushNotification({
                     type: 'notification',
@@ -83,8 +84,13 @@
                     }
                 })
             },
-            moveResizeEvent: function(event, time, type, mode, isFinally){
-                // console.log('移動或增減事件長度', event, time, type, mode, isFinally);
+            clickTime: function(time, mode){
+                console.log('點擊時間', time, mode);
+
+                this.addEvent(time, mode);
+            },
+            dropEvent: function(event, time, type, mode, isFinally){
+                console.log('拖曳行程', event, time, type, mode, isFinally);
 
                 let $event = this.$okaTool.copy(event);
 
@@ -118,13 +124,8 @@
 
                 this.updateEvent($event, isFinally);
             },
-            clickTime: function(time, mode){
-                // console.log('點選時間', time, mode);
-
-                this.addEvent(time, mode);
-            },
             addEvent: function(time, mode){
-                // console.log('新增事件', time, mode);
+                console.log('新增行程', time, mode);
 
                 let _canAdd = this.sources.find(item => item.editable);
 
@@ -182,7 +183,7 @@
                 });
             },
             clickEvent: function(event, mouseEvent){ //popup 顯示 event
-                //console.log('點擊事件', event, mouseEvent);
+                console.log('點擊行程', event, mouseEvent);
 
                 let $set = {
                         removeEvent: this.removeEvent,
@@ -199,7 +200,7 @@
                 });
             },
             hoverEvent: function(event, mouseEvent){ //tooltip 顯示 event
-                // console.log('滑入事件', event, mouseEvent);
+                console.log('滑入行程', event, mouseEvent);
 
                 this.pushToolTip({
                     type: 'showCalendarInfo',
@@ -209,10 +210,10 @@
                 });
             },
             clickMore: function(event, mouseEvent){
-                // console.log('點擊更多', event, mouseEvent);
+                console.log('點擊”還有n則“', event, mouseEvent);
             },
             hoverMore: function(event, mouseEvent){
-                // console.log('滑入更多', event, mouseEvent);
+                console.log('滑入”還有n則“', event, mouseEvent);
 
                 let $set = {
                         clickEvent: this.clickEvent,
@@ -229,7 +230,7 @@
                 });
             },
             addSource: function(){
-                // console.log('新增月曆');
+                console.log('新增日曆本');
 
                 let $set = {
                         sn: this.$okaTool.getUUID(),
@@ -243,10 +244,10 @@
                 this.clickSource($set);
             },
             importSource: function(){
-                // console.log('匯入月曆');
+                console.log('匯入日曆本');
             },
             clickSource: function(source, mouseEvent){
-                // console.log('編輯行事曆', source);
+                console.log('點擊日曆本', source, mouseEvent);
 
                 this.pushPopUp({
                     type: 'editCalendarSource',
@@ -260,7 +261,7 @@
                 });
             },
             hoverSource: function(source, mouseEvent){
-                // console.log('編輯行事曆', source, mouseEvent);
+                console.log('滑入日曆本', source, mouseEvent);
 
                 if( source.desc !== "" ) {
                     this.pushToolTip({
@@ -274,8 +275,6 @@
                 }
             },
             updateEvent: function(event, isFinally){
-                // console.log('更新事件', event, isFinally);
-
                 const $events = this.events;
 
                 let $event = this.$okaTool.copy(event);
@@ -315,8 +314,6 @@
                 }
             },
             removeEvent: function(event, isFinally){
-                // console.log('移除事件', event, isFinally);
-
                 let _sn = null
 
                 if( typeof event === 'number' || typeof event === 'string' ){
@@ -356,8 +353,6 @@
                 }
             },
             editEvent: function(event){
-                // console.log('編輯事件', event);
-
                 let $set = {
                         updateEvent: this.updateEvent,
                         computedTime: this.computedTime,
@@ -374,8 +369,6 @@
                 });
             },
             updateSource: function(source){
-                //console.log('更新行事曆', source);
-
                 const $source = this.sources;
 
                 let _sn = source.sn,
@@ -525,7 +518,6 @@
                 let $events = res.data;
 
                 $events.forEach(item => {
-                    item.active = true;
                     this.sources.push(item);
                 });
             });
