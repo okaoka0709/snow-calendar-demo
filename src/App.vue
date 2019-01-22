@@ -514,19 +514,11 @@
         },
         created: function(){
 
-            this.$http.get(process.env.BASE_URL +'calEvent.json').then(res => {
-                let $events = res.data;
-
-                $events.forEach(item => {
-                    this.events.push(item);
-                });
-            });
-
             this.$http.get(process.env.BASE_URL +'calSource.json').then(res => {
-                let $events = res.data;
+                this.$set(this, 'sources', res.data);
 
-                $events.forEach(item => {
-                    this.sources.push(item);
+                this.$http.get(process.env.BASE_URL +'calEvent.json').then(res => {
+                    this.$set(this, 'events', res.data);
                 });
             });
 
