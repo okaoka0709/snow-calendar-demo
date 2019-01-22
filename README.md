@@ -1,4 +1,4 @@
-# snow-calendar
+# snow calendar demo
 
 ## Project setup
 ```
