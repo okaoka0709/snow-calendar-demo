@@ -8,6 +8,7 @@
                 :mainCal="mainCal"
                 :refCal="refCal"
                 :mode="mode"
+                :uiVisible="uiVisible"
 
                 @updateCal="updateCal"
                 @updateMode="updateMode"
@@ -58,7 +59,12 @@
                     month: 1,
                     date: 1
                 },
-                mode: 'month'
+                mode: 'month',
+                uiVisible: {
+                    control: true,
+                    refCal: true,
+                    source: true
+                }
             }
         },
         methods: {
