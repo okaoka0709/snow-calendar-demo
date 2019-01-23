@@ -3,12 +3,13 @@
         <loExtend></loExtend>
         <div class="lo main">
             <snowCalendar
-                :events="events"
                 :sources="sources"
+                :events="events"
                 :mainCal="mainCal"
                 :refCal="refCal"
                 :mode="mode"
                 :uiVisible="uiVisible"
+                :lang="lang"
 
                 @updateCal="updateCal"
                 @updateMode="updateMode"
@@ -37,7 +38,6 @@
 
 <script>
     import loExtend from '@/components/loExtend'
-
     import VueCookie from 'vue-cookie'
     import { mapMutations } from 'vuex'
 
@@ -47,8 +47,8 @@
         },
         data: function(){
             return {
-                events: [],
                 sources: [],
+                events: [],
                 mainCal: {
                     year: 2019,
                     month: 1,
@@ -64,7 +64,8 @@
                     control: true,
                     refCal: true,
                     source: true
-                }
+                },
+                lang: 'en'
             }
         },
         methods: {
@@ -74,21 +75,21 @@
                 'pushNotification'
             ]),
             updateCal: function(cal, date){ //切換月曆(ref or main)
-                console.log('切換日曆', cal, '切換時間', date);
+                console.log('calendar', cal, 'date', date);
 
                 VueCookie.set('cal-'+ cal +'Cal', JSON.stringify(date), 1);
             },
             updateMode: function(opt){ //改變模式
-                console.log('切換模式', opt);
+                console.log('updateMode', opt);
 
                 VueCookie.set('cal-mode', opt, 1);
             },
             initMonth: function(opt){ //第一次造訪該月
-                console.log('第一次檢視該月', opt);
+                console.log('initMonth', opt);
                 // this.getEvent(opt);
             },
             errorMsg: function(msg){ //推送錯誤訊息
-                console.log('顯示錯誤的訊息', msg);
+                console.log('errorMsg', msg);
 
                 this.pushNotification({
                     type: 'notification',
@@ -99,12 +100,12 @@
                 })
             },
             clickTime: function(time, mode){
-                console.log('點擊時間', time, mode);
+                console.log('clickTime', time, mode);
 
                 this.addEvent(time, mode);
             },
             dropEvent: function(event, time, type, mode, isFinally){
-                console.log('拖曳行程', event, time, type, mode, isFinally);
+                console.log('dropEvent', event, time, type, mode, isFinally);
 
                 let $event = this.$okaTool.copy(event);
 
@@ -139,7 +140,7 @@
                 this.updateEvent($event, isFinally);
             },
             addEvent: function(time, mode){
-                console.log('新增行程', time, mode);
+                console.log('addEvent', time, mode);
 
                 let _canAdd = this.sources.find(item => item.editable);
 
@@ -147,7 +148,7 @@
                     this.pushPopUp({ //丟去編輯
                         type: 'alert',
                         content: {
-                            html: '無法新增事件，請先新增一本日曆。'
+                            html: 'pleace create a calendar first.'
                         }
                     });
 
@@ -160,7 +161,7 @@
 
                 let $event = {
                         sn: this.$okaTool.getUUID(),
-                        sub: '未命名',
+                        sub: 'new event',
                         desc: '',
                         cal: editableCals[0].sn,
                         location: ''
@@ -197,7 +198,7 @@
                 });
             },
             clickEvent: function(event, mouseEvent){ //popup 顯示 event
-                console.log('點擊行程', event, mouseEvent);
+                console.log('clickEvent', event, mouseEvent);
 
                 let $set = {
                         removeEvent: this.removeEvent,
@@ -214,7 +215,7 @@
                 });
             },
             hoverEvent: function(event, mouseEvent){ //tooltip 顯示 event
-                console.log('滑入行程', event, mouseEvent);
+                console.log('hoverEvent', event, mouseEvent);
 
                 this.pushToolTip({
                     type: 'showCalendarInfo',
@@ -224,10 +225,10 @@
                 });
             },
             clickMore: function(event, mouseEvent){
-                console.log('點擊”還有n則“', event, mouseEvent);
+                console.log('clickMore', event, mouseEvent);
             },
             hoverMore: function(event, mouseEvent){
-                console.log('滑入”還有n則“', event, mouseEvent);
+                console.log('hoverMore', event, mouseEvent);
 
                 let $set = {
                         clickEvent: this.clickEvent,
@@ -244,11 +245,11 @@
                 });
             },
             addSource: function(){
-                console.log('新增日曆本');
+                console.log('addSource');
 
                 let $set = {
                         sn: this.$okaTool.getUUID(),
-                        sub: '未命名',
+                        sub: 'new calendar',
                         color: this.$okaTool.randomColor('light'),
                         active: true,
                         editable: true,
@@ -258,10 +259,10 @@
                 this.clickSource($set);
             },
             importSource: function(){
-                console.log('匯入日曆本');
+                console.log('importSource');
             },
             clickSource: function(source, mouseEvent){
-                console.log('點擊日曆本', source, mouseEvent);
+                console.log('clickSource', source, mouseEvent);
 
                 this.pushPopUp({
                     type: 'editCalendarSource',
@@ -275,7 +276,7 @@
                 });
             },
             hoverSource: function(source, mouseEvent){
-                console.log('滑入日曆本', source, mouseEvent);
+                console.log('hoverSource', source, mouseEvent);
 
                 if( source.desc !== "" ) {
                     this.pushToolTip({
@@ -321,7 +322,7 @@
                     this.pushNotification({
                         type: 'notification',
                         content: {
-                            html: '事件更新完成',
+                            html: 'update complete',
                             status: 'success'
                         }
                     });
@@ -351,7 +352,7 @@
                         if( isFinally ){
 
                             this.pushNotification({
-                                type: 'notification',
+                                type: 'remove complete',
                                 content: {
                                     html: '事件刪除完成',
                                     status: 'success'
@@ -359,11 +360,11 @@
                             });
                         }
                     }else {
-                        console.log('無法找到 sn 事件');
+                        console.log('can\'t find this event');
                     }
 
                 }else {
-                    console.log('錯誤的sn');
+                    console.log('this sn is fall');
                 }
             },
             editEvent: function(event){
@@ -402,7 +403,7 @@
                 this.pushNotification({
                     type: 'notification',
                     content: {
-                        html: '日曆更新完成',
+                        html: 'update complete',
                         status: 'success'
                     }
                 });
@@ -421,7 +422,7 @@
                     this.pushNotification({
                         type: 'notification',
                         content: {
-                            html: '月曆刪除完成',
+                            html: 'remove complete',
                             status: 'success'
                         }
                     });

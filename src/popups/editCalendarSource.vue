@@ -1,16 +1,16 @@
 <template>
     <form class="g pop-up-inner" @submit.prevent="register">
         <div class="md toggle-aside">
-            <a title="關閉" @click.prevent="close"></a>
+            <a title="close" @click.prevent="close"></a>
         </div>
         <div class="md caption">
-            <a>編輯日曆本</a>
+            <a>edit calendar</a>
         </div>
         <div class="g pop-up-content">
             <div class="md form-table">
                 <table>
                     <tr>
-                        <th><label for="sub">標題</label></th>
+                        <th><label for="sub">title</label></th>
                         <td>
                             <div class="cp input text" :class="[errors.has('sub')? 'is-error': '']" :data-error="errors.first('sub')">
                                 <input v-if="editable" v-model="sub" type="text" v-validate="'required'" name="sub" id="sub">
@@ -19,14 +19,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="desc">權限</label></th>
+                        <th><label for="desc">editable</label></th>
                         <td>
-                            <span v-if="editable">可編輯</span>
-                            <span v-else>不可編輯</span>
+                            <span v-if="editable">allow</span>
+                            <span v-else>deny</span>
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="color">顏色</label></th>
+                        <th><label for="color">color</label></th>
                         <td>
                             <div class="cp input color" :class="[errors.has('color')? 'is-error': '']" :data-error="errors.first('color')">
                                 <input v-if="editable" v-model="color" type="color" v-validate="'required'" name="color" id="color">
@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="desc">敘述</label></th>
+                        <th><label for="desc">discription</label></th>
                         <td>
                             <textarea v-if="editable" v-model="desc" id="desc"></textarea>
                             <textarea v-else :value="desc" disabled></textarea>
@@ -46,9 +46,9 @@
         </div>
         <div class="md btn-list">
             <ul>
-                <li v-if="editable"><a class="btn is-premary" @click.prevent="edit">確定</a></li>
-                <li v-if="editable"><a class="btn is-danger" @click.prevent="remove">刪除</a></li>
-                <li><a class="btn" @click.prevent="close">取消</a></li>
+                <li v-if="editable"><a class="btn is-premary" @click.prevent="edit">confirm</a></li>
+                <li v-if="editable"><a class="btn is-danger" @click.prevent="remove">remove</a></li>
+                <li><a class="btn" @click.prevent="close">cancel</a></li>
             </ul>
         </div>
     </form>

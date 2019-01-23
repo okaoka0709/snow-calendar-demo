@@ -1,26 +1,26 @@
 [
     {
         "sn": 1,
-        "sub": "個人行事曆",
+        "sub": "personal",
         "color": "#1d88e5",
         "editable": true,
-        "desc": "測試一",
+        "desc": "test1",
         "active": true
     },
     {
         "sn": 2,
-        "sub": "分享行事曆",
+        "sub": "share",
         "color": "#e57a1d",
         "editable": true,
-        "desc": "測試二",
+        "desc": "test2",
         "active": true
     },
     {
         "sn": 3,
-        "sub": "假日",
+        "sub": "holiday",
         "color": "#e54288",
         "editable": false,
-        "desc": "行政院人事行政總處公佈",
+        "desc": "test3",
         "active": false
     }
 ]

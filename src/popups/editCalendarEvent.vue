@@ -1,16 +1,16 @@
 <template>
     <form class="g pop-up-inner" @submit.prevent="register">
         <div class="md toggle-aside">
-            <a title="關閉" @click.prevent="close"></a>
+            <a title="close" @click.prevent="close"></a>
         </div>
         <div class="md caption">
-            <a>編輯日曆事件</a>
+            <a>edit event</a>
         </div>
         <div class="g pop-up-content">
             <div class="md form-table">
                 <table>
                     <tr>
-                        <th><label for="sub">標題</label></th>
+                        <th><label for="sub">title</label></th>
                         <td>
                             <div class="cp input text" :class="[errors.has('sub')? 'is-error': '']" :data-error="errors.first('sub')">
                                 <input v-model="sub" type="text" v-validate="'required'" name="sub" id="sub">
@@ -18,7 +18,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="allDate">全天</label></th>
+                        <th><label for="allDate">all day</label></th>
                         <td>
                             <div class="cp input checkbox">
                                 <input v-model="allDate" type="checkbox" id="allDate" @change="setTime">
@@ -27,7 +27,7 @@
                         </td>
                     </tr>
                     <tr >
-                        <th><label for="startTime">開始</label></th>
+                        <th><label for="startTime">start time</label></th>
                         <td>
                             <div class="cp input date" :class="[errors.has('startTime')? 'is-error': '']" :data-error="errors.first('startTime')">
                                 <input :type="timeType" v-validate="'required'" :value="startTimeComputed" @change="timeToObj($event, 'startTime')" name="startTime" ref="startTime" id="startTime">
@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="endTime">結束</label></th>
+                        <th><label for="endTime">end time</label></th>
                         <td>
                             <div class="cp input date" :class="[errors.has('endTime')? 'is-error': '']" :data-error="errors.first('endTime')">
                                 <input :type="timeType" v-validate="'required|isAfter:startTime'" :value="endTimeComputed" @change="timeToObj($event, 'endTime')" name="endTime" ref="endTime" id="endTime">
@@ -43,7 +43,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="cal">月曆</label></th>
+                        <th><label for="cal">calendar</label></th>
                         <td>
                             <select v-model="cal">
                                 <option v-for="cal in editableCals" :value="cal.sn" :key="'Cal-'+ cal.sn">{{ cal.sub }}</option>
@@ -51,7 +51,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="location">地點</label></th>
+                        <th><label for="location">location</label></th>
                         <td>
                             <div class="cp input text">
                                 <input type="text" v-model="location" id="location">
@@ -59,7 +59,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="desc">敘述</label></th>
+                        <th><label for="desc">discription</label></th>
                         <td><textarea v-model="desc" id="desc"></textarea></td>
                     </tr>
                 </table>
@@ -67,8 +67,8 @@
         </div>
         <div class="md btn-list">
             <ul>
-                <li><a class="btn is-premary" @click.prevent="edit">確定</a></li>
-                <li><a class="btn" @click.prevent="close">取消</a></li>
+                <li><a class="btn is-premary" @click.prevent="edit">confirm</a></li>
+                <li><a class="btn" @click.prevent="close">cancel</a></li>
             </ul>
         </div>
     </form>

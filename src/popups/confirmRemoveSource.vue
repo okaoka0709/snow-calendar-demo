@@ -1,20 +1,20 @@
 <template>
     <form class="g pop-up-inner" @submit.prevent="register">
         <div class="md toggle-aside">
-            <a title="關閉" @click.prevent="close"></a>
+            <a title="close" @click.prevent="close"></a>
         </div>
         <div class="md caption">
-            <a>刪除日曆本</a>
+            <a>remove Calendar</a>
         </div>
         <div class="g pop-up-content">
             <div class="md">
-                <span>這會一併移除該月曆的所有事件，確定嗎?</span>
+                <span>It will remove all of the calendar's event, are you sure?</span>
             </div>
         </div>
         <div class="md btn-list">
             <ul>
-                <li><a class="btn is-premary" @click.prevent="remove">確定</a></li>
-                <li><a class="btn" @click.prevent="close">取消</a></li>
+                <li><a class="btn is-premary" @click.prevent="remove">confirm</a></li>
+                <li><a class="btn" @click.prevent="close">cancel</a></li>
             </ul>
         </div>
     </form>

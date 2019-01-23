@@ -1,37 +1,37 @@
 <template>
     <form class="g pop-up-inner" @submit.prevent="register">
         <div class="md toggle-aside">
-            <a title="關閉" @click.prevent="close"></a>
+            <a title="close" @click.prevent="close"></a>
         </div>
         <div class="md caption">
-            <a>瀏覽日曆事件</a>
+            <a>event</a>
         </div>
         <div class="g pop-up-content">
             <div class="md minor-table">
                 <table>
                     <tbody>
                         <tr>
-                            <th><label>事件名稱</label></th>
+                            <th><label>title</label></th>
                             <td>{{ content.node.sub }}</td>
                         </tr>
                         <tr >
-                            <th><label>開始時間</label></th>
+                            <th><label>start time</label></th>
                             <td>{{ timeFormatter(content.node.startTime) }}</td>
                         </tr>
                         <tr>
-                            <th><label>結束時間</label></th>
+                            <th><label>end time</label></th>
                             <td>{{ timeFormatter(content.node.endTime) }}</td>
                         </tr>
                         <tr v-if="content.node.desc">
-                            <th><label>敘述</label></th>
+                            <th><label>discription</label></th>
                             <td v-html="content.node.desc"></td>
                         </tr>
                         <tr v-if="content.node.cal">
-                            <th><label>歸屬</label></th>
+                            <th><label>calendar</label></th>
                             <td v-html="cal.sub"></td>
                         </tr>
                         <tr v-if="content.node.location">
-                            <th><label>地點</label></th>
+                            <th><label>location</label></th>
                             <td>{{ content.node.location }}</td>
                         </tr>
                     </tbody>
@@ -40,9 +40,9 @@
         </div>
         <div class="md btn-list">
             <ul>
-                <li v-if="cal.editable"><a class="btn is-premary icon-font create" @click.prevent="edit">編輯</a></li>
-                <li v-if="cal.editable"><a class="btn is-danger icon-font delete" @click.prevent="remove">刪除</a></li>
-                <li><a class="btn" @click.prevent="close">確定</a></li>
+                <li v-if="cal.editable"><a class="btn is-premary icon-font create" @click.prevent="edit">edit</a></li>
+                <li v-if="cal.editable"><a class="btn is-danger icon-font delete" @click.prevent="remove">remove</a></li>
+                <li><a class="btn" @click.prevent="close">cancel</a></li>
             </ul>
         </div>
     </form>
@@ -65,7 +65,7 @@
         },
         methods: {
             timeFormatter: function(obj){
-                let _noon = '上午';
+                let _noon = 'am';
 
                 let _year = obj.year,
                     _month = obj.month,
@@ -74,10 +74,10 @@
                     _minutes = obj.minutes;
 
                 if( _hour === 12 ){
-                    _noon = '下午';
+                    _noon = 'pm';
                 }else if( _hour > 12 ){
                     _hour -= 12;
-                    _noon = '下午';
+                    _noon = 'pm';
                 }
 
                 _minutes = this.$okaTool.doubleCount(_minutes);

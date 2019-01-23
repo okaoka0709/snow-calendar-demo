@@ -9,6 +9,7 @@ import VeeValidate, { Validator } from 'vee-validate'
 import snowCalendar from 'snow-calendar'
 import okaTool from './okaTool'
 import './registerServiceWorker'
+import 'snow-calendar/src/css/snowCalendar.css'
 
 Vue.config.productionTip = false
 

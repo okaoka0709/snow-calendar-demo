@@ -4,7 +4,7 @@
             <a title="關閉" @click.prevent="close"></a>
         </div>
         <div class="md caption">
-            <a>提示</a>
+            <a>alert</a>
         </div>
         <div class="g pop-up-content">
             <div class="g pop-up-content-inner">
@@ -13,7 +13,7 @@
         </div>
         <div class="md btn-list">
             <ul>
-                <li><a class="btn is-premary" @click.prevent="close">確定</a></li>
+                <li><a class="btn is-premary" @click.prevent="close">confirm</a></li>
             </ul>
         </div>
     </div>

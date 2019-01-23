@@ -15,7 +15,7 @@
             "minutes":0
         },
         "sn":"1",
-        "sub":"元旦",
+        "sub":"new year",
         "desc":"",
         "cal":3,
         "location":""
@@ -36,7 +36,7 @@
             "minutes":0
         },
         "sn":"2",
-        "sub":"週末",
+        "sub":"weekend",
         "desc":"",
         "cal":3,
         "location":""
@@ -57,7 +57,7 @@
             "minutes":0
         },
         "sn":"3",
-        "sub":"週末",
+        "sub":"weekend",
         "desc":"",
         "cal":3,
         "location":""
@@ -78,7 +78,7 @@
             "minutes":0
         },
         "sn":"4",
-        "sub":"週末",
+        "sub":"weekend",
         "desc":"",
         "cal":3,
         "location":""
@@ -99,7 +99,7 @@
             "minutes":0
         },
         "sn":"5",
-        "sub":"週末",
+        "sub":"weekend",
         "desc":"",
         "cal":3,
         "location":""
@@ -120,14 +120,14 @@
             "minutes":0
         },
         "sn":"6",
-        "sub":"過年",
+        "sub":"chinese new year",
         "desc":"",
         "cal":3,
         "location":""
     },
     {
         "sn":"15481221368660.41220879862838866",
-        "sub":"多日行程1",
+        "sub":"multi days 1",
         "desc":"",
         "cal":1,
         "location":"",
@@ -148,7 +148,7 @@
     },
     {
         "sn":"15481221650990.44713779233230055",
-        "sub":"多日行程2",
+        "sub":"multi days 2",
         "desc":"",
         "cal":2,
         "location":"",
@@ -169,7 +169,7 @@
     },
     {
         "sn":"15481222011690.03933619529261567",
-        "sub":"單日行程3",
+        "sub":"multi days 3",
         "desc":"",
         "cal":1,
         "location":"",
@@ -190,7 +190,7 @@
     },
     {
         "sn":"15481222192250.760487592672817",
-        "sub":"跨日行程1",
+        "sub":"over days 1",
         "desc":"",
         "cal":2,
         "location":"",
@@ -211,7 +211,7 @@
     },
     {
         "sn":"15481222380220.6967396095320946",
-        "sub":"單日行程1",
+        "sub":"one day 1",
         "desc":"",
         "cal":1,
         "location":"",
@@ -232,7 +232,7 @@
     },
     {
         "sn":"15481222664620.009442966902011074",
-        "sub":"單日行程2",
+        "sub":"one day 2",
         "desc":"",
         "cal":2,
         "location":"",
@@ -253,7 +253,7 @@
     },
     {
         "sn":"15481223193260.1601370668143176",
-        "sub":"多日行程",
+        "sub":"multi days 4",
         "desc":"",
         "cal":1,
         "location":"",

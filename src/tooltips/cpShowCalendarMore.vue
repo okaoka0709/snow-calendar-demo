@@ -4,7 +4,7 @@
         v-if="event.extend.cover > 0"
         :class="[event.extend.isOver? 'is-over': '']"
         :style="'background-color:'+ cal.color +';'"
-    >全天 {{ event.sub }}</a>
+    >{{ event.sub }}</a>
     <a v-else class="time" :class="[event.extend.isOver? 'is-over': '']">
         <i :style="'background-color:'+ cal.color +';'"></i>{{ event.formatTime }} {{ event.sub }}
     </a>
