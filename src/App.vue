@@ -65,7 +65,7 @@
                     refCal: true,
                     source: true
                 },
-                lang: 'jp'
+                lang: 'en'
             }
         },
         methods: {
