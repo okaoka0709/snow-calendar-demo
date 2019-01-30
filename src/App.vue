@@ -65,7 +65,7 @@
                     refCal: true,
                     source: true
                 },
-                lang: 'en'
+                lang: 'jp'
             }
         },
         methods: {
@@ -104,40 +104,16 @@
 
                 this.addEvent(time, mode);
             },
-            dropEvent: function(event, time, type, mode, isFinally){
-                console.log('dropEvent', event, time, type, mode, isFinally);
+            dropEvent: function(event){
+                console.log('dropEvent', event);
 
-                let $event = this.$okaTool.copy(event);
-
-                if( mode === 'date' && type === 'head' ){
-                    let _difference = this.differenceTime(time, $event.startTime, mode);
-
-                    $event.startTime = this.computedTime($event.startTime, _difference);
-                    $event.endTime = this.computedTime($event.endTime, _difference);
-                }else if( mode === 'date' && type === 'foot' ){
-                    $event.endTime.year = time.year;
-                    $event.endTime.month = time.month;
-                    $event.endTime.date = time.date;
-                }else if( mode === 'time' && type === 'head' ){
-                    let _difference = this.differenceTime(time, $event.startTime, mode);
-
-                    $event.startTime = this.computedTime($event.startTime, _difference);
-                    $event.endTime = this.computedTime($event.endTime, _difference);
-                }else if( mode === 'time' && type === 'foot' ){
-                    $event.endTime.year = time.year;
-                    $event.endTime.month = time.month;
-                    $event.endTime.date = time.date;
-                    $event.endTime.hour = time.hour;
-                    $event.endTime.minutes = time.minutes;
-
-                    if( !$event.extend ) {
-                        $event.extend = {};
+                this.pushNotification({
+                    type: 'notification',
+                    content: {
+                        html: 'update complete',
+                        status: 'success'
                     }
-
-                    $event.extend.cover = 0;
-                }
-
-                this.updateEvent($event, isFinally);
+                });
             },
             addEvent: function(time, mode){
                 console.log('addEvent', time, mode);
