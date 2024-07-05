@@ -23,6 +23,8 @@ Vue.use(VeeValidate, {
 
 Validator.localize('zh_TW', zh_TW);
 
+console.log(123);
+
 new Vue({
   store,
   render: h => h(App)
