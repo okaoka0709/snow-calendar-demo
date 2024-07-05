@@ -32,4 +32,4 @@ new Vue({
 
 import './sass/global.scss'
 
-console.log(345)
+console.log(3456)
