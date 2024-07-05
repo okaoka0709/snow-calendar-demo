@@ -29,3 +29,5 @@ new Vue({
 }).$mount('#app')
 
 import './sass/global.scss'
+
+console.log(345)
